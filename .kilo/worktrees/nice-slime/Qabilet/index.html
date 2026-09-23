@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Qabilet — Инклюзивная платформа доступности</title>
+  <meta name="description" content="Qabilet — универсальная платформа доступности: голосовой помощник, переводчик жестового языка, образование для людей с особыми потребностями." />
+  <meta name="theme-color" content="#6C3AE8" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Qabilet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="theme-default" id="app-body">
+
+  <!-- Splash Screen -->
+  <div class="splash-screen" id="splash">
+    <div class="splash-logo">
+      <div class="splash-icon">♾️</div>
+      <h1 class="splash-title">Qabilet</h1>
+      <p class="splash-sub">Возможности без границ</p>
+    </div>
+    <div class="splash-loader">
+      <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
+    </div>
+  </div>
+
+  <!-- App Wrapper -->
+  <div class="app-wrapper" id="appWrapper" style="display:none;">
+
+    <!-- Top Navigation Bar -->
+    <header class="top-bar" id="topBar">
+      <button class="back-btn" id="backBtn" onclick="goHome()" aria-label="Назад на главную" style="display:none;">
+        <span>←</span>
+      </button>
+      <div class="top-bar-title" id="topBarTitle">Qabilet</div>
+      <button class="settings-btn" id="settingsBtn" onclick="openSettings()" aria-label="Настройки доступности">
+        <span>⚙️</span>
+      </button>
+    </header>
+
+    <!-- Pages Container -->
+    <main class="pages-container">
+
+      <!-- HOME PAGE -->
+      <div class="page active" id="page-home">
+        <div class="home-hero">
+          <div class="hero-badge">🌟 Платформа доступности</div>
+          <h2 class="hero-title">Возможности<br/><span class="gradient-text">без границ</span></h2>
+          <p class="hero-desc">Технологии на службе каждого человека — независимо от ограничений</p>
+        </div>
+
+        <div class="modules-grid">
+          <div class="module-card" id="card-voice" onclick="openModule('voice')" role="button" tabindex="0" aria-label="Голосовой помощник">
+            <div class="module-icon">🎙️</div>
+            <div class="module-info">
+              <h3>Голосовой помощник</h3>
+              <p>Для людей с нарушением зрения</p>
+            </div>
+            <div class="module-arrow">→</div>
+            <div class="module-glow glow-purple"></div>
+          </div>
+
+          <div class="module-card" id="card-signs" onclick="openModule('signs')" role="button" tabindex="0" aria-label="Переводчик жестового языка">
+            <div class="module-icon">🤟</div>
+            <div class="module-info">
+              <h3>Жестовый язык</h3>
+              <p>Переводчик и обучение жестам</p>
+            </div>
+            <div class="module-arrow">→</div>
+            <div class="module-glow glow-blue"></div>
+          </div>
+
+          <div class="module-card" id="card-learn" onclick="openModule('learn')" role="button" tabindex="0" aria-label="Образовательная платформа">
+            <div class="module-icon">📚</div>
+            <div class="module-info">
+              <h3>Обучение</h3>
+              <p>Адаптивные образовательные курсы</p>
+            </div>
+            <div class="module-arrow">→</div>
+            <div class="module-glow glow-green"></div>
+          </div>
+
+          <div class="module-card" id="card-ai" onclick="openModule('ai')" role="button" tabindex="0" aria-label="ИИ Тьютор">
+            <div class="module-icon">🧠</div>
+            <div class="module-info">
+              <h3>ИИ-Тьютор</h3>
+              <p>Интеллектуальная поддержка обучения</p>
+            </div>
+            <div class="module-arrow">→</div>
+            <div class="module-glow glow-orange"></div>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-num">4</span>
+            <span class="stat-label">Модуля</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Доступность</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">∞</span>
+            <span class="stat-label">Возможности</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VOICE ASSISTANT PAGE -->
+      <div class="page" id="page-voice">
+        <div class="page-header">
+          <div class="page-icon-big">🎙️</div>
+          <h2>Голосовой помощник</h2>
+          <p>Говорите — я слушаю и помогаю</p>
+        </div>
+
+        <div class="voice-container">
+          <div class="voice-circle" id="voiceCircle" onclick="toggleVoice()" aria-label="Нажмите для голосового ввода" role="button" tabindex="0">
+            <div class="voice-ring ring1"></div>
+            <div class="voice-ring ring2"></div>
+            <div class="voice-ring ring3"></div>
+            <div class="voice-mic-icon">🎤</div>
+          </div>
+          <p class="voice-status" id="voiceStatus">Нажмите для начала</p>
+        </div>
+
+        <div class="voice-result-box" id="voiceResultBox">
+          <div class="voice-transcript" id="voiceTranscript">Здесь появится ваша речь...</div>
+        </div>
+
+        <div class="voice-commands-section">
+          <h3>Голосовые команды:</h3>
+          <div class="cmd-list">
+            <div class="cmd-item" onclick="speakText('Открыть обучение')">"Открыть обучение"</div>
+            <div class="cmd-item" onclick="speakText('Открыть жестовый язык')">"Открыть жесты"</div>
+            <div class="cmd-item" onclick="speakText('Открыть ИИ помощника')">"Открыть ИИ"</div>
+            <div class="cmd-item" onclick="speakText('Помощь')">"Помощь"</div>
+          </div>
+        </div>
+
+        <div class="voice-output-box" id="voiceOutputBox">
+          <div class="voice-speaker-icon">🔊</div>
+          <p id="voiceOutputText">Голосовой ответ появится здесь</p>
+        </div>
+
+        <div class="action-row">
+          <button class="btn-primary" onclick="startVoiceGreeting()" id="greetBtn">
+            🔊 Голосовое приветствие
+          </button>
+          <button class="btn-secondary" onclick="stopSpeech()" id="stopBtn">
+            ⏹ Стоп
+          </button>
+        </div>
+      </div>
+
+      <!-- SIGN LANGUAGE PAGE -->
+      <div class="page" id="page-signs">
+        <div class="page-header">
+          <div class="page-icon-big">🤟</div>
+          <h2>Жестовый язык</h2>
+          <p>Учитесь общаться жестами</p>
+        </div>
+
+        <div class="signs-tabs">
+          <button class="sign-tab active" onclick="showSignTab('dictionary', this)">Словарь</button>
+          <button class="sign-tab" onclick="showSignTab('camera', this)">Камера</button>
+          <button class="sign-tab" onclick="showSignTab('lessons', this)">Уроки</button>
+        </div>
+
+        <!-- Dictionary Tab -->
+        <div class="sign-content active" id="sign-dictionary">
+          <div class="search-box">
+            <input type="text" placeholder="🔍 Поиск жеста..." id="signSearch" oninput="filterSigns()" />
+          </div>
+          <div class="signs-grid" id="signsGrid">
+            <!-- filled by JS -->
+          </div>
+        </div>
+
+        <!-- Camera Tab -->
+        <div class="sign-content" id="sign-camera">
+          <div class="camera-section">
+            <div class="camera-frame" id="cameraFrame">
+              <video id="cameraVideo" autoplay playsinline muted></video>
+              <canvas id="cameraCanvas"></canvas>
+              <div class="camera-overlay">
+                <div class="camera-corner tl"></div>
+                <div class="camera-corner tr"></div>
+                <div class="camera-corner bl"></div>
+                <div class="camera-corner br"></div>
+              </div>
+              <div class="camera-status" id="cameraStatus">Нажмите для запуска камеры</div>
+            </div>
+            <div class="detected-gesture" id="detectedGesture">
+              <span class="gesture-label">Обнаружен жест:</span>
+              <span class="gesture-value" id="gestureValue">—</span>
+            </div>
+            <button class="btn-primary" onclick="startCamera()" id="startCamBtn">📷 Запустить камеру</button>
+            <p class="camera-hint">Наведите камеру на руки для распознавания жестов</p>
+          </div>
+        </div>
+
+        <!-- Lessons Tab -->
+        <div class="sign-content" id="sign-lessons">
+          <div class="lessons-list" id="signLessonsList">
+            <!-- filled by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- LEARNING PAGE -->
+      <div class="page" id="page-learn">
+        <div class="page-header">
+          <div class="page-icon-big">📚</div>
+          <h2>Образование</h2>
+          <p>Адаптивные курсы для всех</p>
+        </div>
+
+        <div class="learn-categories">
+          <button class="cat-btn active" onclick="filterCourses('all', this)">Все</button>
+          <button class="cat-btn" onclick="filterCourses('basic', this)">Основы</button>
+          <button class="cat-btn" onclick="filterCourses('language', this)">Язык</button>
+          <button class="cat-btn" onclick="filterCourses('math', this)">Математика</button>
+          <button class="cat-btn" onclick="filterCourses('art', this)">Творчество</button>
+        </div>
+
+        <div class="courses-list" id="coursesList">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+      <!-- AI TUTOR PAGE -->
+      <div class="page" id="page-ai">
+        <div class="page-header">
+          <div class="page-icon-big">🧠</div>
+          <h2>ИИ-Тьютор</h2>
+          <p>Ваш персональный помощник в обучении</p>
+        </div>
+
+        <div class="ai-chat" id="aiChat">
+          <div class="ai-message bot" id="aiWelcome">
+            <div class="ai-avatar">🤖</div>
+            <div class="ai-bubble">
+              Привет! Я ваш интеллектуальный помощник Qabilet. Задайте любой вопрос — я помогу с обучением, объясню сложные темы или просто поддержу вас! 💙
+            </div>
+          </div>
+        </div>
+
+        <div class="ai-input-area">
+          <div class="ai-input-row">
+            <button class="ai-voice-btn" onclick="startAIVoice()" aria-label="Голосовой ввод">🎤</button>
+            <input type="text" class="ai-input" id="aiInput" placeholder="Задайте вопрос..." onkeydown="handleAIKey(event)" />
+            <button class="ai-send-btn" onclick="sendAIMessage()" aria-label="Отправить">➤</button>
+          </div>
+          <div class="ai-suggestions">
+            <button class="ai-sug-btn" onclick="sendQuick('Объясни мне дроби')">Дроби</button>
+            <button class="ai-sug-btn" onclick="sendQuick('Что такое фотосинтез?')">Фотосинтез</button>
+            <button class="ai-sug-btn" onclick="sendQuick('Помоги с алфавитом')">Алфавит</button>
+            <button class="ai-sug-btn" onclick="sendQuick('Расскажи сказку')">Сказка</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Accessibility Settings Panel -->
+    <div class="settings-overlay" id="settingsOverlay" onclick="closeSettings()"></div>
+    <div class="settings-panel" id="settingsPanel">
+      <div class="settings-header">
+        <h3>♿ Доступность</h3>
+        <button onclick="closeSettings()" class="close-btn">✕</button>
+      </div>
+
+      <div class="setting-item">
+        <span class="setting-label">🔤 Крупный шрифт</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="largeFontToggle" onchange="toggleLargeFont()" />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="setting-item">
+        <span class="setting-label">🌙 Тёмный режим</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()" />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="setting-item">
+        <span class="setting-label">⚡ Высокий контраст</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="highContrastToggle" onchange="toggleHighContrast()" />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="setting-item">
+        <span class="setting-label">✋ Упрощённый режим</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="simpleModeToggle" onchange="toggleSimpleMode()" />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="setting-item">
+        <span class="setting-label">🔊 Озвучивание</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="ttsToggle" checked onchange="toggleTTS()" />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="setting-item column">
+        <span class="setting-label">🎨 Тема интерфейса</span>
+        <div class="theme-options">
+          <button class="theme-dot theme-purple active" onclick="setTheme('default')" title="Фиолетовая"></button>
+          <button class="theme-dot theme-blue" onclick="setTheme('blue')" title="Синяя"></button>
+          <button class="theme-dot theme-green" onclick="setTheme('green')" title="Зелёная"></button>
+          <button class="theme-dot theme-dark" onclick="setTheme('dark')" title="Тёмная"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lesson Modal -->
+    <div class="modal-overlay" id="lessonOverlay" onclick="closeLesson()"></div>
+    <div class="lesson-modal" id="lessonModal">
+      <div class="lesson-modal-header">
+        <h3 id="lessonModalTitle"></h3>
+        <button onclick="closeLesson()" class="close-btn">✕</button>
+      </div>
+      <div class="lesson-modal-body" id="lessonModalBody"></div>
+      <div class="lesson-modal-footer">
+        <button class="btn-primary" onclick="lessonAction()" id="lessonActionBtn">Далее ▶</button>
+        <button class="btn-secondary" onclick="speakLesson()" id="lessonSpeakBtn">🔊 Озвучить</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/voice.js"></script>
+  <script src="js/signs.js"></script>
+  <script src="js/learn.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+@import "tailwindcss";
+
+/* =========================================================================
+   Qabilet design tokens
+   Neutral-first palette, one accent. Light is the base; dark follows the
+   OS preference and is forced by the "dark" theme. Theme classes on <html>
+   (set by AccessibilityProvider) only swap the accent.
+   ========================================================================= */
+
+:root {
+  color-scheme: light dark;
+
+  /* Neutrals */
+  --background: #fafafa;
+  --background-subtle: #f4f4f5;
+  --surface: #ffffff;
+  --surface-muted: #f4f4f5;
+  --surface-hover: #efeff1;
+  --border: #e4e4e7;
+  --border-strong: #d4d4d8;
+  --foreground: #09090b;
+  --foreground-muted: #52525b;
+  --foreground-subtle: #6b6b74;
+
+  /* Accent (default: iris) */
+  --accent: #5b5bd6;
+  --accent-hover: #5151cd;
+  --accent-foreground: #ffffff;
+  --accent-text: #5753c6;
+  --accent-soft: rgb(91 91 214 / 0.08);
+  --accent-soft-strong: rgb(91 91 214 / 0.14);
+  --accent-border: rgb(91 91 214 / 0.35);
+
+  /* Semantic */
+  --success: #15803d;
+  --success-soft: rgb(21 128 61 / 0.08);
+  --warning: #b45309;
+  --warning-soft: rgb(180 83 9 / 0.08);
+  --danger: #dc2626;
+  --danger-solid: #dc2626;
+  --danger-soft: rgb(220 38 38 / 0.07);
+
+  --ring: var(--accent);
+  --overlay: rgb(9 9 11 / 0.4);
+
+  /* Elevation */
+  --elev-xs: 0 1px 2px rgb(9 9 11 / 0.04);
+  --elev-sm: 0 1px 2px rgb(9 9 11 / 0.05), 0 1px 3px rgb(9 9 11 / 0.04);
+  --elev-md: 0 6px 16px -4px rgb(9 9 11 / 0.08), 0 2px 4px -2px rgb(9 9 11 / 0.04);
+  --elev-lg: 0 24px 48px -16px rgb(9 9 11 / 0.22), 0 4px 12px -4px rgb(9 9 11 / 0.06);
+
+  /* Line-art images (sign alphabet) are black ink on white paper */
+  --img-invert: 0;
+  --img-blend: multiply;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #09090b;
+    --background-subtle: #0d0d10;
+    --surface: #111114;
+    --surface-muted: #18181b;
+    --surface-hover: #1f1f23;
+    --border: #232327;
+    --border-strong: #2f2f34;
+    --foreground: #fafafa;
+    --foreground-muted: #a1a1aa;
+    --foreground-subtle: #86868f;
+
+    --accent-hover: #6e6ade;
+    --accent-text: #b1a9ff;
+    --accent-soft: rgb(110 106 222 / 0.12);
+    --accent-soft-strong: rgb(110 106 222 / 0.2);
+    --accent-border: rgb(145 140 240 / 0.4);
+
+    --success: #4ade80;
+    --success-soft: rgb(74 222 128 / 0.1);
+    --warning: #fbbf24;
+    --warning-soft: rgb(251 191 36 / 0.1);
+    --danger: #f87171;
+    --danger-soft: rgb(248 113 113 / 0.1);
+
+    --overlay: rgb(0 0 0 / 0.6);
+
+    --elev-xs: 0 1px 2px rgb(0 0 0 / 0.4);
+    --elev-sm: 0 1px 2px rgb(0 0 0 / 0.5), 0 0 0 1px rgb(255 255 255 / 0.02);
+    --elev-md: 0 8px 24px -6px rgb(0 0 0 / 0.6);
+    --elev-lg: 0 24px 60px -12px rgb(0 0 0 / 0.75);
+
+    --img-invert: 1;
+    --img-blend: screen;
+  }
+}
+
+/* Accent: blue */
+:root.theme-blue {
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-text: #1d4ed8;
+  --accent-soft: rgb(37 99 235 / 0.08);
+  --accent-soft-strong: rgb(37 99 235 / 0.14);
+  --accent-border: rgb(37 99 235 / 0.35);
+}
+@media (prefers-color-scheme: dark) {
+  :root.theme-blue {
+    --accent-hover: #3b82f6;
+    --accent-text: #8ab4ff;
+    --accent-soft: rgb(59 130 246 / 0.12);
+    --accent-soft-strong: rgb(59 130 246 / 0.2);
+    --accent-border: rgb(96 150 255 / 0.4);
+  }
+}
+
+/* Accent: green */
+:root.theme-green {
+  --accent: #15803d;
+  --accent-hover: #166534;
+  --accent-text: #15803d;
+  --accent-soft: rgb(21 128 61 / 0.08);
+  --accent-soft-strong: rgb(21 128 61 / 0.14);
+  --accent-border: rgb(21 128 61 / 0.35);
+}
+@media (prefers-color-scheme: dark) {
+  :root.theme-green {
+    --accent-hover: #16a34a;
+    --accent-text: #6ee7a0;
+    --accent-soft: rgb(34 197 94 / 0.12);
+    --accent-soft-strong: rgb(34 197 94 / 0.2);
+    --accent-border: rgb(74 222 128 / 0.4);
+  }
+}
+
+/* Graphite: forced dark, monochrome accent */
+:root.theme-dark {
+  color-scheme: dark;
+  --background: #09090b;
+  --background-subtle: #0d0d10;
+  --surface: #111114;
+  --surface-muted: #18181b;
+  --surface-hover: #1f1f23;
+  --border: #232327;
+  --border-strong: #2f2f34;
+  --foreground: #fafafa;
+  --foreground-muted: #a1a1aa;
+  --foreground-subtle: #86868f;
+
+  --accent: #fafafa;
+  --accent-hover: #e4e4e7;
+  --accent-foreground: #09090b;
+  --accent-text: #fafafa;
+  --accent-soft: rgb(255 255 255 / 0.07);
+  --accent-soft-strong: rgb(255 255 255 / 0.12);
+  --accent-border: rgb(255 255 255 / 0.3);
+
+  --success: #4ade80;
+  --success-soft: rgb(74 222 128 / 0.1);
+  --warning: #fbbf24;
+  --warning-soft: rgb(251 191 36 / 0.1);
+  --danger: #f87171;
+  --danger-soft: rgb(248 113 113 / 0.1);
+
+  --overlay: rgb(0 0 0 / 0.6);
+  --elev-xs: 0 1px 2px rgb(0 0 0 / 0.4);
+  --elev-sm: 0 1px 2px rgb(0 0 0 / 0.5), 0 0 0 1px rgb(255 255 255 / 0.02);
+  --elev-md: 0 8px 24px -6px rgb(0 0 0 / 0.6);
+  --elev-lg: 0 24px 60px -12px rgb(0 0 0 / 0.75);
+  --img-invert: 1;
+  --img-blend: screen;
+}
+
+/* High contrast: black and white with a yellow accent. Declared last so it
+   wins over any accent theme. */
+:root.high-contrast {
+  color-scheme: dark;
+  --background: #000000;
+  --background-subtle: #000000;
+  --surface: #000000;
+  --surface-muted: #0a0a0a;
+  --surface-hover: #1a1a1a;
+  --border: #ffffff;
+  --border-strong: #ffffff;
+  --foreground: #ffffff;
+  --foreground-muted: #ffffff;
+  --foreground-subtle: #e5e5e5;
+  --accent: #ffd400;
+  --accent-hover: #ffe04d;
+  --accent-foreground: #000000;
+  --accent-text: #ffd400;
+  --accent-soft: rgb(255 212 0 / 0.14);
+  --accent-soft-strong: rgb(255 212 0 / 0.24);
+  --accent-border: #ffd400;
+  --success: #4ade80;
+  --warning: #ffd400;
+  --danger: #ff6b6b;
+  --ring: #ffd400;
+  --elev-xs: none;
+  --elev-sm: none;
+  --elev-md: none;
+  --elev-lg: none;
+  --img-invert: 1;
+  --img-blend: screen;
+}
+
+/* Large font: scales every rem-based size */
+:root.large-font {
+  font-size: 125%;
+}
+
+/* Dyslexia-friendly font. Font variables live on <body> (next/font), so the
+   override targets body to win over them. */
+.dyslexia-font body {
+  --font-onest: "Comic Sans MS", "Comic Neue", cursive, sans-serif;
+  --font-jetbrains: "Comic Sans MS", "Comic Neue", cursive, sans-serif;
+}
+
+/* ===== Tailwind theme bridge ===== */
+@theme inline {
+  --color-background: var(--background);
+  --color-subtle: var(--background-subtle);
+  --color-surface: var(--surface);
+  --color-muted: var(--surface-muted);
+  --color-hover: var(--surface-hover);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-fg: var(--foreground);
+  --color-fg-muted: var(--foreground-muted);
+  --color-fg-subtle: var(--foreground-subtle);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-fg: var(--accent-foreground);
+  --color-accent-text: var(--accent-text);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-strong: var(--accent-soft-strong);
+  --color-accent-border: var(--accent-border);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-solid: var(--danger-solid);
+  --color-danger-soft: var(--danger-soft);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-onest), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --shadow-xs: var(--elev-xs);
+  --shadow-sm: var(--elev-sm);
+  --shadow-md: var(--elev-md);
+  --shadow-lg: var(--elev-lg);
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ===== Base ===== */
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    min-height: 100dvh;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-onest), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    line-height: 1.2;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--accent-soft-strong);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--border-strong);
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+}
+
+/* ===== Type utilities ===== */
+@utility text-eyebrow {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--foreground-subtle);
+}
+
+@utility text-display {
+  font-size: 1.75rem;
+  line-height: 2.125rem;
+  font-weight: 600;
+  letter-spacing: -0.028em;
+  @media (width >= 48rem) {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Line-art images follow the theme instead of a fixed invert */
+@utility sign-art {
+  filter: invert(var(--img-invert));
+  mix-blend-mode: var(--img-blend);
+}
+
+/* ===== Loading skeleton ===== */
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@utility skeleton {
+  background: var(--surface-muted);
+  border-radius: 0.5rem;
+  animation: skeleton-pulse 1.6s ease-in-out infinite;
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

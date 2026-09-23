@@ -1,0 +1,21 @@
+{
+  "name": "Qabilet — Инклюзивная платформа",
+  "short_name": "Qabilet",
+  "description": "Универсальная платформа доступности: голосовой помощник, жестовый язык, адаптивное образование",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0F0A1E",
+  "theme_color": "#6C3AE8",
+  "lang": "ru",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "categories": ["education", "accessibility", "health"],
+  "shortcuts": [
+    { "name": "Голосовой помощник", "url": "./index.html#voice", "description": "Открыть голосовой помощник" },
+    { "name": "Жестовый язык",    "url": "./index.html#signs", "description": "Переводчик жестового языка" },
+    { "name": "Обучение",         "url": "./index.html#learn", "description": "Образовательные курсы" }
+  ]
+}
