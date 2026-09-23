@@ -9,9 +9,12 @@ interface SignAvatarProps {
   currentWord: string | null;
   language?: 'ru' | 'kk';
   className?: string;
+  /** Cover the area with a spinner while the video is looked up. Turn off
+   *  when something is already shown underneath. */
+  showLoading?: boolean;
 }
 
-export default function SignAvatar({ currentWord, language = 'ru', className = "" }: SignAvatarProps) {
+export default function SignAvatar({ currentWord, language = 'ru', className = "", showLoading = true }: SignAvatarProps) {
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -44,7 +47,7 @@ export default function SignAvatar({ currentWord, language = 'ru', className = "
     fetchGesture();
   }, [currentWord, language]);
 
-  if (!isVisible && !loading) return null;
+  if (loading ? !showLoading : !isVisible) return null;
 
   return (
     <div className={cn("relative aspect-video overflow-hidden rounded-lg border border-border bg-black", className)}>

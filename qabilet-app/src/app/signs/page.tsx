@@ -25,6 +25,7 @@ import {
 import { SIGNS_DATA, ALPHABET_DATA } from "@/lib/data";
 import { getGesturesLibrary, seedGestures, saveGesturePattern } from "@/app/actions";
 import SignAvatar from "@/components/SignAvatar";
+import GestureAnimation from "@/components/GestureAnimation";
 import { useLanguage } from "@/components/LanguageProvider";
 
 type Tab = "dictionary" | "alphabet" | "camera";
@@ -625,12 +626,11 @@ export default function SignsPage() {
                     className="sign-art object-contain p-4"
                   />
                 ) : (
-                  <span className="absolute inset-0 flex items-center justify-center text-fg-subtle">
-                    <Hand size={32} strokeWidth={1.5} className="opacity-40" />
-                  </span>
+                  <GestureAnimation word={selectedSign.word} />
                 )}
                 <SignAvatar
                   currentWord={selectedSign.isLetter ? selectedSign.word.split(' ')[1] : selectedSign.word}
+                  showLoading={false}
                   className="absolute inset-0 z-10 h-full w-full rounded-none border-0"
                 />
               </div>

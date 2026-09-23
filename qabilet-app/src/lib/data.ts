@@ -76,6 +76,13 @@ export const SIGNS_DATA = [
   { emoji: '❌', word: 'Нет', description: 'Покачайте головой из стороны в сторону', category: 'basic' },
   { emoji: '👍', word: 'Хорошо', description: 'Поднимите большой палец вверх', category: 'basic' },
   { emoji: '👎', word: 'Плохо', description: 'Опустите большой палец вниз', category: 'basic' },
+  { emoji: '✋', word: 'Стоп', description: 'Поднимите ладонь с сомкнутыми пальцами и коротко толкните её вперёд', category: 'basic' },
+  { emoji: '🖐️', word: 'Пока', description: 'Поднимите ладонь и несколько раз согните и разогните пальцы вместе', category: 'greeting' },
+  { emoji: '🫴', word: 'Иди сюда', description: 'Держа ладонь вверх, несколько раз согните пальцы к себе', category: 'basic' },
+  { emoji: '☝️', word: 'Подожди', description: 'Поднимите указательный палец вверх, остальные сожмите в кулак', category: 'basic' },
+  { emoji: '✌️', word: 'Мир', description: 'Поднимите указательный и средний пальцы буквой V, остальные прижмите к ладони', category: 'basic' },
+  { emoji: '🤙', word: 'Позвони', description: 'Отставьте большой палец и мизинец, остальные согните и покачайте кистью, как трубкой', category: 'basic' },
+  { emoji: '🤟', word: 'Я тебя люблю', description: 'Выпрямите большой, указательный палец и мизинец, средний и безымянный прижмите к ладони', category: 'emotion' },
 ];
 
 export const ALPHABET_DATA = [
